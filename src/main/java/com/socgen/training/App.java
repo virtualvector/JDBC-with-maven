@@ -55,9 +55,7 @@ public class App
 			String userAddress =  scan.nextLine();
 					
 			// Write the query to insert
-			String insertQry = "insert into userDetails(user_Name, user_Address) values ('" 
-			+ userName + 
-			"', "
+			String insertQry = "insert into userDetails(user_Name, user_Address) values ('" + userName +"', "
 			+ "'" + userAddress + "')";
 			
 			//Create the Statement
@@ -70,30 +68,32 @@ public class App
 			else
 				System.out.println("Some issues while creating the account, please try again later...");
 			
+			
+			
+			
+
+			// Write the query to execute
+			String qryFetch = "select user_Address, user_Name from userDetails";
+			
+			//Create the Statement
+			java.sql.Statement stmt1 = dbCon.createStatement();
+			
+			//execute the query and get the results in a ResultSet object
+			ResultSet rs = stmt1.executeQuery(qryFetch);
+			
+			//Traverse through the resutset
+			while(rs.next()) {
+				
+				System.out.println("Name: " + rs.getString("user_Name"));
+				System.out.println(", Address: " + rs.getString("user_Address"));
+		}
+			
+			
+			
 			//Close the connection
 			dbCon.close();
 			
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			//Close the connection
-			//dbCon.close();
-			
-			
-			
-			
-//			System.out.println("Successfully connected to db:socGenDetails");
-		
 		} catch (ClassNotFoundException e) {
 			
 			System.out.println("Driver not configured..." + e.getMessage());
